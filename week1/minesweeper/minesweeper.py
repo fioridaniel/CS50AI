@@ -6,26 +6,15 @@ def adjacentCells(cell):
     adj_cells = set()
     i, j = cell
     
-    for row in range(8):
-        for col in range(8):
+    for di in [-1, 0, 1]:
+        for dj in [-1, 0, 1]:
+            if di == 0 and dj == 0:
+                continue
+            ni, nj = i + di, j + dj
+            if 0 <= ni < 8 and 0 <= nj < 8:  # verifica limites
+                adj_cells.add((ni, nj))
     
-            adj_cell = row, col
-            delta_row = abs(i - row)
-            delta_col = abs(j - col)
-            
-            # mesma linha
-            if delta_row == 0 and delta_col == 1:
-                adj_cells.add(adj_cell)
-            
-            # mesma coluna
-            elif delta_row == 1 and delta_col == 0:
-                adj_cells.add(adj_cell)
-            
-            # diagonal
-            elif delta_row == 1 and delta_col == 1:
-                adj_cells.add(adj_cell)
-    
-    return adj_cells
+    return adj_cells 
 
 class Minesweeper():
     """
